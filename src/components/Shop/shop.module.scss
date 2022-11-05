@@ -1,0 +1,17 @@
+.shop {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 12px;
+}
+
+.product{
+    display: flex;
+    flex-direction: row;
+}
+
+.book-img{
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+}
+
