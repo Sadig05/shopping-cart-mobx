@@ -1,16 +1,68 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  --primary-color: #388E3C;
+  --secondary-color: #F2F2F2;
+  --accent-color: #F7CA48;
+  --text-color: #333333;
+  --font-family: 'Open Sans', sans-serif;
+
+  --background-color: #f9f9f9;
+
+  --light-text-color: #666;
+  --dark-text-color: #1a1a1a;
+
+  --font-family: 'Inter', 'Avenir', 'Helvetica', 'Arial', sans-serif;
+  --font-size: 16px;
+  --line-height: 1.5;
+  --font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-color);
+  background-color: var(--background-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  font-weight: var(--font-weight);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #242424;
+    --text-color: #ddd;
+    --light-text-color: #bbb;
+    --dark-text-color: #eee;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #f9f9f9;
+    --text-color: #333;
+    --light-text-color: #666;
+    --dark-text-color: #1a1a1a;
+  }
 }

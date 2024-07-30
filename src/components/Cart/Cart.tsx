@@ -3,28 +3,31 @@ import React, { useEffect, useState } from "react";
 import { IProduct } from "../../models/Shop";
 import { useStore } from "../../stores/RootStore";
 import style from "./cart.module.scss";
+
 const Cart = () => {
   const { shopStore } = useStore();
 
   return (
-    <div className={style["cart"]}>
-      Cart
+    <div className={style.cart}>
+      <h1>Shopping Cart</h1>
       {shopStore.products.map((item: IProduct) => {
         return (
-          <div className={style["cart-item"]}>
-            <div>
+          <div className={style['cart-item']} key={item.id}>
+            <div className={style["product-info"]}>
               <h3>{item.title}</h3>
-              <p className={style["amount"]}>{item.amount}</p>
+              <p>Quantity: {item.amount}</p>
             </div>
-            <button onClick={() => shopStore.removeFromCart(item.id)}>
-              remove
-            </button>
-            <button onClick={() => shopStore.incAmount(item)}>+</button>
-            <button onClick={() => shopStore.decAmount(item)}>-</button>
+            <div className={style.actions}>
+              <button onClick={() => shopStore.removeFromCart(item.id)}>
+                Remove
+              </button>
+              <button onClick={() => shopStore.incAmount(item)}>+</button>
+              <button onClick={() => shopStore.decAmount(item)}>-</button>
+            </div>
           </div>
         );
       })}
-      <h1>{shopStore.totalPrice}</h1>
+      <h1>Total: {shopStore.totalPrice}</h1>
     </div>
   );
 };

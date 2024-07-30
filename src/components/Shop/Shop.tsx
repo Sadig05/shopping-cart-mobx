@@ -3,22 +3,21 @@ import React from "react";
 import data from "../../data";
 import { useStore } from "../../stores/RootStore";
 import style from "./shop.module.scss";
+
 const Shop = () => {
-  const {shopStore} = useStore();
+  const { shopStore } = useStore();
   return (
-    <div className={style["shop"]}>
-      {data.map((item) => {
-        return (
-          <div>
-            <div>
-              <img className={style["book-img"]} src={item.img} alt="" />
-            </div>
-            <p>{item.title}</p>
-            <p>{item.author}</p>
-            <button onClick={() => shopStore.addToCart(item)} >add to cart</button>
+    <div className={style.shop}>
+      {data.map((item) => (
+        <div key={item.id} className={style.product}>
+          <img className={style["book-img"]} src={item.img} alt={item.title} />
+          <div className={style["product-info"]}>
+            <p className={style.title}>{item.title}</p>
+            <p className={style.author}>{item.author}</p>
           </div>
-        );
-      })}
+          <button onClick={() => shopStore.addToCart(item)}>Add to Cart</button>
+        </div>
+      ))}
     </div>
   );
 };

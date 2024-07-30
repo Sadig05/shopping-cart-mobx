@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { IProduct } from "../models/Shop";
+import { toast } from "react-toastify";
 
 class ShopStore {
     products: IProduct[] = JSON.parse(localStorage.getItem("cartItems") || "[]");
@@ -10,21 +11,28 @@ class ShopStore {
     }
 
     addToCart = (product: IProduct) => {
-
-        let isFound = this.products.some(el => el.id === product.id)
-
-        if(!isFound){
-            this.products = [...this.products,product];
-            localStorage.setItem("cartItems", JSON.stringify(this.products))
-            this.size = this.products.length;
-        } else{
-
-            let index = this.products.findIndex(el => el.id === product.id)
-            this.products[index].amount += 1;
-            localStorage.setItem("cartItems", JSON.stringify(this.products))
+        let isFound = this.products.some(el => el.id === product.id);
+    
+        if (!isFound) {
+          this.products = [...this.products, product];
+          localStorage.setItem("cartItems", JSON.stringify(this.products));
+          this.size = this.products.length;
+          
+          toast.success('Item added to cart!', {
+            position: "bottom-left",
+            autoClose: 3000, 
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          let index = this.products.findIndex(el => el.id === product.id);
+          this.products[index].amount += 1;
+          localStorage.setItem("cartItems", JSON.stringify(this.products));
         }
-
-    }
+      }
 
     removeFromCart = (id: number) => {
         this.products = this.products.filter((product: IProduct) => product.id != id)   
@@ -56,12 +64,10 @@ class ShopStore {
 
     showMainPage = () => { 
         this.mainPage = true;
-        console.log("shop");
     };
 
     showCart = () => {
         this.mainPage = false;
-        console.log("cart");
     };
 }
 
