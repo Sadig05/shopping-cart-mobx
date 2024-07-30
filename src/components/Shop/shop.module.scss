@@ -60,6 +60,13 @@ $font-family: 'Arial, sans-serif';
     align-items: center;
     justify-content: center;
     width: 100%;
+
+      .price {
+    margin: 10px 0;
+    color: $primary-color; // Or any color you prefer
+    font-size: 1.1em;
+    font-weight: bold;
+  }
   }
 
   p {
@@ -79,6 +86,7 @@ $font-family: 'Arial, sans-serif';
       width: 100%; // Ensure the text does not overflow the container
       padding: 0 10px; // Added padding for better text visibility
     }
+    
   }
 
   button {

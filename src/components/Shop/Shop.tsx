@@ -1,8 +1,8 @@
 import { observer } from "mobx-react";
-import React from "react";
 import data from "../../data";
 import { useStore } from "../../stores/RootStore";
 import style from "./shop.module.scss";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 const Shop = () => {
   const { shopStore } = useStore();
@@ -14,6 +14,7 @@ const Shop = () => {
           <div className={style["product-info"]}>
             <p className={style.title}>{item.title}</p>
             <p className={style.author}>{item.author}</p>
+            <p className={style.price}>{formatCurrency(item.price)}</p> 
           </div>
           <button onClick={() => shopStore.addToCart(item)}>Add to Cart</button>
         </div>
